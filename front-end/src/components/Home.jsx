@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './shared/Navbar';
 import HeroSection from './HeroSection';
+import CategoryCarousel from './CategoryCarousel';
 
 
 export const Home = () => {
@@ -8,8 +9,8 @@ export const Home = () => {
     <div>
         <Navbar/>
         <HeroSection/>
-        {/* <CategoryCarousel/>
-        <LatestJobs/>
+        <CategoryCarousel/>
+        {/* <LatestJobs/>
         <Footer/> */}
     </div>
   )
