@@ -9,7 +9,9 @@ const category = [
   "Data Science",
   "Graphic Designer",
   "Android Developer",
-  "Machine Learning"
+  "Machine Learning",
+  "Artificial Intelligence",
+  "Cyber Security",
 ];
 
 const CategoryCarousel = () => {
