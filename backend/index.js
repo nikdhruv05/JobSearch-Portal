@@ -7,6 +7,7 @@ import companyRoute from "./routes/company.routes.js";
 import jobRoute from "./routes/job.route.js";
 import connectDB from "./utils/db.js";
 import applicationRoute from "./routes/application.route.js";
+import cloudinary from "cloudinary";
 
 dotenv.config({});
 

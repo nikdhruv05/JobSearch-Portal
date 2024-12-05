@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../shared/Navbar";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import axios from "axios";
 import { USER_API_END_POINT } from "@/utils/constant";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading } from "@/redux/authSlice";
+import { setLoading, setUser } from "@/redux/authSlice";
 import store from "@/redux/store";
 import { Loader2 } from "lucide-react";
 
@@ -20,7 +20,7 @@ export const Login = () => {
     role: "",
   });
 
-  const loading  = useSelector((store) => store.auth);
+  const { loading, user } = useSelector((store) => store.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -39,16 +39,26 @@ export const Login = () => {
         withCredentials: true,
       });
       if (res.data.success) {
+        dispatch(setUser(res.data.user));
         navigate("/");
         toast.success(res.data.message);
       }
     } catch (error) {
       console.log(error);
-      toast.error(error.response.data.message);
+      if (error.response) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
     } finally {
       dispatch(setLoading(false));
     }
   };
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div>
@@ -106,9 +116,9 @@ export const Login = () => {
           </div>
           {loading ? (
             <Button className="w-full my-4">
-              {" "}
+              {""}
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Please wait...{" "}
+              Please wait...{""}
             </Button>
           ) : (
             <Button type="submit" className="w-full my-4">
