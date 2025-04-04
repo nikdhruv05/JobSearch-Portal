@@ -35,7 +35,12 @@ const Navbar = () => {
   return (
     <div className="bg-white w-screen">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
-        <div>
+      <div className="flex items-center gap-2">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/6427/6427283.png"
+            alt="JobPortal Logo"
+            className="h-10 w-10"
+          />
           <h1 className="text-2xl font-bold">
             Job<span className="text-[#F83002]">Portal</span>
           </h1>
