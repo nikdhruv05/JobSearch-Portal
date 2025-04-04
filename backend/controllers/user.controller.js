@@ -6,6 +6,7 @@ import cloudinary from "../utils/cloudinary.js";
 
 export const register = async (req, res) => {
     try {
+        
         const {fullname, email, phoneNumber, password, role} = req.body;
         
         if(!fullname || !email || !phoneNumber || !password || !role){
@@ -14,7 +15,17 @@ export const register = async (req, res) => {
                 success: false
             });
         };
+
+        // console.log("Upload file", req.file);
+
         const file = req.file;
+        if(!file){
+           return res.status(400).json({
+            message: "No file uploaded",
+            success: false
+           });
+        }
+
         const fileUri = getDataUri(file);
         const cloudResponse = await cloudinary.uploader.upload(fileUri.content);
 
@@ -45,12 +56,12 @@ export const register = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        
     }
 }
 
 export const login = async (req, res) => {
     try {
+        
         const {email, password, role} = req.body;
         if(!email || !password || !role){
             return res.status(400).json({
