@@ -76,7 +76,6 @@ const UpdateProfileDialogue = ({ open, setOpen }) => {
     }
     setOpen(false);
 
-    console.log(input);
   }
 
   return (
