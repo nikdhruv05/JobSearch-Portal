@@ -16,7 +16,6 @@ export const register = async (req, res) => {
             });
         };
 
-        // console.log("Upload file", req.file);
 
         const file = req.file;
         if(!file){
